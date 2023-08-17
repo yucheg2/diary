@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
 import Typography from "@mui/material/Typography";
 import SwipeableViews from "react-swipeable-views";
-import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
 
-const DataSlider = () => {
-    const month = [
+interface DataSliderProps {
+    curentDate: Date;
+    handleCahngeDate: (date: Date) => void;
+}
+
+const DataSlider = ({ curentDate, handleCahngeDate }: DataSliderProps) => {
+    const month: string[] = [
         "Январь",
         "Февраль",
         "Март",
@@ -22,9 +27,8 @@ const DataSlider = () => {
         "Декабрь",
     ];
     const days: number[] = Array.from({ length: 31 }, (v, i) => i + 1);
-    const [curentDate, setCurrentDate] = useState<Date>(new Date());
     const handleDateInc = () => {
-        setCurrentDate(
+        handleCahngeDate(
             new Date(
                 curentDate.getFullYear(),
                 curentDate.getMonth(),
@@ -33,7 +37,7 @@ const DataSlider = () => {
         );
     };
     const handleDateDic = () => {
-        setCurrentDate(
+        handleCahngeDate(
             new Date(
                 curentDate.getFullYear(),
                 curentDate.getMonth(),
@@ -44,6 +48,7 @@ const DataSlider = () => {
     return (
         <Box
             sx={{
+                paddingTop: "1vh",
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-between",
@@ -53,18 +58,21 @@ const DataSlider = () => {
                 color: "rgb(255, 255, 255)",
             }}
         >
-            <Button onClick={handleDateDic}>
-                {" "}
-                <ArrowBackIosNewRoundedIcon />
-            </Button>
+            <IconButton size="large" onClick={handleDateDic}>
+                <ArrowBackIosNewRoundedIcon color="action" />
+            </IconButton>
             <Box
                 sx={{
+                    cursor: "default",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
                     width: "100%",
                 }}
             >
+                <Typography variant="h5">
+                    {month[curentDate.getMonth()]}
+                </Typography>
                 <SwipeableViews index={curentDate.getDate() - 1}>
                     {days.map((day) => {
                         return (
@@ -74,14 +82,11 @@ const DataSlider = () => {
                         );
                     })}
                 </SwipeableViews>
-                <Typography variant="h5">
-                    {month[curentDate.getMonth()]}
-                </Typography>
+                <Typography variant="h6">{curentDate.getFullYear()}</Typography>
             </Box>
-            <Button onClick={handleDateInc}>
-                {" "}
-                <ArrowForwardIosRoundedIcon />
-            </Button>
+            <IconButton size="large" onClick={handleDateInc}>
+                <ArrowForwardIosRoundedIcon color="action" />
+            </IconButton>
         </Box>
     );
 };
