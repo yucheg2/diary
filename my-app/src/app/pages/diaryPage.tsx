@@ -22,9 +22,9 @@ const DiaryPage = () => {
                 sx={{
                     position: "sticky",
                     top: "85vh",
-                    left: "85vw",
-                    width: "10vw",
-                    height: "10vw",
+                    left: "83vw",
+                    width: "100px",
+                    height: "100px",
                 }}
             >
                 <AddIcon sx={{ fontSize: 43 }} />

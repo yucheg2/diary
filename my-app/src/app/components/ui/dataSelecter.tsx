@@ -5,6 +5,7 @@ import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRound
 import Typography from "@mui/material/Typography";
 import SwipeableViews from "react-swipeable-views";
 import IconButton from "@mui/material/IconButton";
+import DateForm from "../common/dateForm/dateForm";
 
 interface DataSliderProps {
     curentDate: Date;
@@ -51,7 +52,7 @@ const DataSlider = ({ curentDate, handleCahngeDate }: DataSliderProps) => {
                 paddingTop: "1vh",
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-between",
+                justifyContent: "center",
                 bgcolor: "info.main",
                 borderBottom: 1,
                 borderRadius: "0 0 15px 15px",
@@ -65,6 +66,7 @@ const DataSlider = ({ curentDate, handleCahngeDate }: DataSliderProps) => {
                 sx={{
                     cursor: "default",
                     display: "flex",
+                    flexShrink: 1,
                     flexDirection: "column",
                     alignItems: "center",
                     width: "100%",
@@ -73,18 +75,27 @@ const DataSlider = ({ curentDate, handleCahngeDate }: DataSliderProps) => {
                 <Typography variant="h5">
                     {month[curentDate.getMonth()]}
                 </Typography>
-                <SwipeableViews index={curentDate.getDate() - 1}>
+                <SwipeableViews
+                    index={curentDate.getDate() - 1}
+                    containerStyle={{ width: "70vw", height: "100%" }}
+                >
                     {days.map((day) => {
                         return (
-                            <Box sx={{ textAlign: "center" }} key={day}>
+                            <Box
+                                sx={{
+                                    textAlign: "center",
+                                }}
+                                key={day}
+                            >
                                 <Typography variant="h5">{day}</Typography>
                             </Box>
                         );
                     })}
                 </SwipeableViews>
                 <Typography variant="h6">{curentDate.getFullYear()}</Typography>
+                <DateForm value={curentDate} onChange={handleCahngeDate} />
             </Box>
-            <IconButton size="large" onClick={handleDateInc}>
+            <IconButton size="small" onClick={handleDateInc}>
                 <ArrowForwardIosRoundedIcon color="action" />
             </IconButton>
         </Box>

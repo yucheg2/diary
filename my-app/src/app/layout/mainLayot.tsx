@@ -8,7 +8,13 @@ export interface LayoutProps {
 const MainLayout = ({ children }: LayoutProps) => {
     return (
         <Container
-            sx={{ boxShadow: 3, pt: 0, height: "100vh", position: "relative" }}
+            sx={{
+                boxShadow: 3,
+                pt: 0,
+                height: "100vh",
+                width: "100vw",
+                position: "relative",
+            }}
             maxWidth="md"
         >
             {children}
