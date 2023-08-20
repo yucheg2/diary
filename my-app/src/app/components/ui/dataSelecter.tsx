@@ -77,7 +77,7 @@ const DataSlider = ({ curentDate, handleCahngeDate }: DataSliderProps) => {
                 </Typography>
                 <SwipeableViews
                     index={curentDate.getDate() - 1}
-                    containerStyle={{ width: "70vw", height: "100%" }}
+                    containerStyle={{ width: "40vw", height: "100%" }}
                 >
                     {days.map((day) => {
                         return (

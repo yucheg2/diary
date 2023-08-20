@@ -1,3 +1,4 @@
+import { RootState } from "./store";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface Todo {
@@ -43,5 +44,11 @@ const todosSlice = createSlice({
 });
 
 const { reducer: todosReducer } = todosSlice;
+
+//selectors
+
+export const getTodosSelector = (date: string) => (state: RootState) => {
+    return state.todos.entities[date];
+};
 
 export default todosReducer;
